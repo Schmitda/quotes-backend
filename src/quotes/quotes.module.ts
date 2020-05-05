@@ -24,7 +24,9 @@ console.log(connectionOptions);
       synchronize: true,
       entities: [QuoteEntity],
       extra: {
-        ssl: true,
+        ssl: {
+          rejectUnauthorized: false,
+        }
       },
     }),
     TypeOrmModule.forFeature([QuoteEntity]),
