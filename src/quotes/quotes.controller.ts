@@ -8,8 +8,8 @@ import { InjectRepository } from '@nestjs/typeorm';
 
 @Controller('quotes')
 export class QuotesController {
-    @InjectRepository(QuoteEntity)
-    private quoteEntityRepository: Repository<QuoteEntity>;
+  @InjectRepository(QuoteEntity)
+  private quoteEntityRepository: Repository<QuoteEntity>;
 
 
   @Get('load-quotes')
@@ -23,7 +23,7 @@ export class QuotesController {
     readInterface.on('line', input => {
       const quote = input.split('"')[1].replace('"', '');
       const from = input.split('"')[2];
-            quotes.push(this.quoteEntityRepository.save({ from: from, quote: quote }));
+      quotes.push(this.quoteEntityRepository.save({ from: from, quote: quote }));
     });
     return new Promise((resolve, reject) => {
       readInterface.on('close', () => {
@@ -36,8 +36,6 @@ export class QuotesController {
 
   @Get('get-quote')
   showQuote() {
-    /*
-        return this.quoteEntityRepository.query('select * from quotes ORDER BY random() limit 1');
-    */
+    return this.quoteEntityRepository.query('select * from quotes ORDER BY random() limit 1');
   }
 }
