@@ -15,7 +15,7 @@ export class QuotesController {
   @Get('load-quotes')
   loadQuotes() {
     const readInterface = readline.createInterface({
-      input: fs.createReadStream('quotes.txt'),
+      input: fs.createReadStream('./quotes.txt'),
       output: process.stdout,
       console: false,
     } as any);
