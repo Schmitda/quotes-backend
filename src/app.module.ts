@@ -6,7 +6,6 @@ import { QuotesModule } from './quotes/quotes.module';
 
 @Module({
   imports: [
-
     QuotesModule,
   ],
   controllers: [AppController],
