@@ -13,7 +13,8 @@ export class QuotesController {
 
 
   @Get('load-quotes')
-  loadQuotes() {
+  async loadQuotes() {
+    await this.quoteEntityRepository.query("DELETE from quotes");
     const readInterface = readline.createInterface({
       input: fs.createReadStream(__dirname + '/../quotes.txt'),
       output: process.stdout,
