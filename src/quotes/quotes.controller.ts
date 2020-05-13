@@ -4,8 +4,10 @@ import * as fs from 'fs';
 import { QuoteEntity } from './quote.entity';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
+import { ApiBody, ApiTags } from '@nestjs/swagger';
 
 
+@ApiTags('Quotes')
 @Controller('quotes')
 export class QuotesController {
   @InjectRepository(QuoteEntity)
