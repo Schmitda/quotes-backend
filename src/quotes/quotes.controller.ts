@@ -4,7 +4,7 @@ import * as fs from 'fs';
 import { QuoteEntity } from './quote.entity';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
-import { ApiBody, ApiTags } from '@nestjs/swagger';
+import { ApiTags } from '@nestjs/swagger';
 
 
 @ApiTags('Quotes')
@@ -16,7 +16,7 @@ export class QuotesController {
 
   @Get('load-quotes')
   async loadQuotes() {
-    await this.quoteEntityRepository.query("DELETE from quotes");
+    await this.quoteEntityRepository.query('DELETE from quotes');
     const readInterface = readline.createInterface({
       input: fs.createReadStream(__dirname + '/../quotes.txt'),
       output: process.stdout,
@@ -38,7 +38,7 @@ export class QuotesController {
   }
 
   @Get('get-quote')
-  showQuote() {
-    return this.quoteEntityRepository.query('select * from quotes ORDER BY random() limit 1')[0];
+  async showQuote() {
+    return (await this.quoteEntityRepository.query('select * from quotes ORDER BY random() limit 1'))[0];
   }
 }
