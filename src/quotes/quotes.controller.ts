@@ -39,6 +39,6 @@ export class QuotesController {
 
   @Get('get-quote')
   showQuote() {
-    return this.quoteEntityRepository.query('select * from quotes ORDER BY random() limit 1');
+    return this.quoteEntityRepository.query('select * from quotes ORDER BY random() limit 1')[0];
   }
 }
